@@ -11,8 +11,7 @@ namespace CleanCode.CommonClass
 
         public static string GetPathFileSetting()
         {
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            return Path.Combine(baseDirectory, "FileSetting", "setting.json");
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "FileSetting", "setting.json");
         }
 
         public static async Task<int?> UpdateValueFileSetting(string key, string value)
@@ -21,13 +20,11 @@ namespace CleanCode.CommonClass
             {
                 string filePathSetting = GetPathFileSetting();
 
-                string json = await File.ReadAllTextAsync(filePathSetting);
-                dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+                dynamic jsonObj = ReadAllTextFileSetting(filePathSetting);
 
                 jsonObj[key] = value;
 
-                string output = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);
-                await File.WriteAllTextAsync(filePathSetting, output);
+                await WriteAllTextFileSetting(filePathSetting, jsonObj);
 
                 return 1;
             }
@@ -44,13 +41,11 @@ namespace CleanCode.CommonClass
             {
                 string filePathSetting = GetPathFileSetting();
 
-                string json = await File.ReadAllTextAsync(filePathSetting);
-                dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
-                
+                dynamic jsonObj = ReadAllTextFileSetting(filePathSetting);
+
                 string value = jsonObj[key];
-                
-                string output = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);
-                await File.WriteAllTextAsync(filePathSetting, output);
+
+                await WriteAllTextFileSetting(filePathSetting, jsonObj);
 
                 return value;
             }
@@ -59,6 +54,20 @@ namespace CleanCode.CommonClass
                 Console.WriteLine(ex.ToString());
                 return null;
             }
+        }
+
+        public static async Task<dynamic> ReadAllTextFileSetting(string filePathSetting)
+        {
+            string json = await File.ReadAllTextAsync(filePathSetting);
+
+            return Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+        }
+
+        public static async Task WriteAllTextFileSetting(string filePathSetting, dynamic jsonObj)
+        {
+            string output = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObj, Newtonsoft.Json.Formatting.Indented);
+
+            await File.WriteAllTextAsync(filePathSetting, output);
         }
 
         public static async Task SaveExcel(string path, List<object> data)
