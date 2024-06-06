@@ -4,13 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Clean_Code.Models.Entity
 {
     [Table("data")]
-    public class Data
+    public class Data : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("id", TypeName = "bigint")]
-        public long Id { get; set; }
-
         [Column("time")]
         public DateTime? Time { get; set; }
 
@@ -37,9 +32,6 @@ namespace Clean_Code.Models.Entity
 
         [Column("result_line")]
         public int? ResultLine { get; set; }
-
-        [Column("target_id")]
-        public int? TargetId { get; set; }
 
         [Column("timeline")]
         public string? TimeLine { get; set; }

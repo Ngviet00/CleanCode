@@ -4,6 +4,8 @@ using Microsoft.OpenApi.Models;
 using Clean_Code.Contexts;
 using Clean_Code.Hubs;
 using Clean_Code.Services;
+using CleanCode.Services;
+using Clean_Code;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,11 @@ builder.Services.AddScoped<DataService>();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Data", Version = "v1" });
+});
+
+builder.Services.AddHostedService(provider =>
+{
+    return new ImageCleanupService(Global.PathCleanupImage);
 });
 
 var log4netConfig = new FileInfo("log4net.config");
