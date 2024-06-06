@@ -20,7 +20,7 @@ namespace CleanCode.CommonClass
             {
                 string filePathSetting = GetPathFileSetting();
 
-                dynamic jsonObj = ReadAllTextFileSetting(filePathSetting);
+                dynamic jsonObj = await ReadAllTextFileSetting(filePathSetting);
 
                 jsonObj[key] = value;
 
@@ -41,7 +41,7 @@ namespace CleanCode.CommonClass
             {
                 string filePathSetting = GetPathFileSetting();
 
-                dynamic jsonObj = ReadAllTextFileSetting(filePathSetting);
+                dynamic jsonObj = await ReadAllTextFileSetting(filePathSetting);
 
                 string value = jsonObj[key];
 
@@ -60,7 +60,9 @@ namespace CleanCode.CommonClass
         {
             string json = await File.ReadAllTextAsync(filePathSetting);
 
-            return Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+            dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+
+            return jsonObj;
         }
 
         public static async Task WriteAllTextFileSetting(string filePathSetting, dynamic jsonObj)
