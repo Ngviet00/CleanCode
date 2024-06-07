@@ -1,4 +1,5 @@
 ﻿using CleanCode.CommonClass;
+using CleanCode.Const;
 
 namespace CleanCode.Services
 {
@@ -17,21 +18,27 @@ namespace CleanCode.Services
             {
                 await Task.Delay(TimeSpan.FromHours(3), stoppingToken);
 
-                CleanupOldFiles();
+                CleanupOldFilesInFolderAfterManyDays(Constants.DAY_CLEAN_UP_FILE);
             }
         }
 
-        private void CleanupOldFiles()
+        private void CleanupOldFilesInFolderAfterManyDays(int days)
         {
             try
             {
-                string[] files = Directory.GetFiles(_folderPath ?? "");
+                if (!Directory.Exists(_folderPath))
+                {
+                    CmFunc.Log("ImageCleanupImage", "CleanupOldFiles", $"Directory does not exist: {_folderPath}");
+                    return;
+                }
+
+                var files = Directory.EnumerateFiles(_folderPath ?? "");
 
                 foreach (var file in files)
                 {
                     var fileInfo = new FileInfo(file);
 
-                    if (DateTime.Now - fileInfo.CreationTime > TimeSpan.FromDays(15))
+                    if (DateTime.Now - fileInfo.CreationTime > TimeSpan.FromDays(days))
                     {
                         File.Delete(file);
                     }

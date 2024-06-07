@@ -5,7 +5,9 @@ using Clean_Code.Contexts;
 using Clean_Code.Hubs;
 using Clean_Code.Services;
 using CleanCode.Services;
-using Clean_Code;
+using CleanCode.Const;
+using Hangfire;
+using CleanCode.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<DataService>();
 
+builder.Services.AddScoped<IJobService, JobService>();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Data", Version = "v1" });
@@ -32,11 +36,17 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddHostedService(provider =>
 {
-    return new ImageCleanupService(Global.PathCleanupImage);
+    return new ImageCleanupService(Constants.PATH_CLEANUP_IMAGE);
 });
 
 var log4netConfig = new FileInfo("log4net.config");
 XmlConfigurator.Configure(log4netConfig);
+
+builder.Services.AddHangfire(x =>
+{
+    x.UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultContext"));
+});
+builder.Services.AddHangfireServer();
 
 var app = builder.Build();
 
@@ -62,6 +72,7 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapHub<HomeHub>("/homeHub");
 
+app.UseHangfireDashboard();
 
 app.MapControllerRoute(
     name: "default",

@@ -13,6 +13,10 @@
 
         public const int PERCENT = 100;
 
-        public const int TIME_SLEEP = 100;
+        public const int TIME_SLEEP = 300;
+
+        public const int DAY_CLEAN_UP_FILE = 15;
+
+        public static string PATH_CLEANUP_IMAGE = @"D:\TestImageDownload";
     }
 }

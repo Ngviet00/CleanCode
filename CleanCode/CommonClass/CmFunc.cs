@@ -130,7 +130,7 @@ namespace CleanCode.CommonClass
 
         public static void Log(string msg)
         {
-            log.Info($"{msg}");
+            log.Error($"{msg}");
         }
     }
 }
