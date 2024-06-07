@@ -32,6 +32,7 @@
 		<Folder Include="Controllers\API\Admin\" />
 		<Folder Include="Controllers\View\Admin\" />
 		<Folder Include="Migrations\" />
+		<Folder Include="Configuration\" />
 	</ItemGroup>
 
 	<ItemGroup>
