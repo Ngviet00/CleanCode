@@ -3,5 +3,8 @@
     "hidden_setting": "0",
     "list_models": "Stiffener_953_PSA_Side,Stiffener_953_Filler_Side,Stiffener_954_PSA_Side,Stiffener_954_Filler_Side,Stiffener_963_964_PSA_Side,Stiffener_963_964_Filler_Side",
     "mode": "2",
-    "timeline": "20240521174456"
+    "timeline": "20240521174456",
+    "total_ok" :  "997",
+    "total_ng" :  "2",
+    "total_empty" :  "1"
 }

@@ -1,7 +1,8 @@
 ﻿"use strict";
 
-import { STATUS_PLC, SYSTEM_STATUS_CLIENT, STATUS_RESULT, CLIENT } from "./Const/const.js";
-import { getCurrentDateTime, formatNumberWithDot, convertDate } from "./Common/common.js";
+import { STATUS_PLC, SYSTEM_STATUS_CLIENT, STATUS_RESULT, CLIENT } from "./const.js";
+
+import { getCurrentDateTime, formatNumberWithDot, convertDate } from "./common.js";
 
 const connection = new signalR.HubConnectionBuilder()
     .withUrl("/homeHub")

@@ -8,6 +8,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
 		<PackageReference Include="BundleTransformer.SassAndScss" Version="1.14.0" />
 		<PackageReference Include="CsvHelper" Version="31.0.2" />
 		<PackageReference Include="Hangfire" Version="1.8.12" />
@@ -22,8 +24,6 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
-		<PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 		<PackageReference Include="System.IO.Ports" Version="8.0.0" />
 	</ItemGroup>
@@ -31,14 +31,19 @@
 	<ItemGroup>
 		<Folder Include="Controllers\API\Admin\" />
 		<Folder Include="Controllers\View\Admin\" />
-		<Folder Include="Migrations\" />
-		<Folder Include="Configuration\" />
+		<Folder Include="Services\Admin\" />
+		<Folder Include="Views\Admin\" />
+		<Folder Include="wwwroot\scss\Admin\" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Remove="Configuration\**" />
 		<Compile Remove="wwwroot\font-awesome\**" />
+		<Content Remove="Configuration\**" />
 		<Content Remove="wwwroot\font-awesome\**" />
+		<EmbeddedResource Remove="Configuration\**" />
 		<EmbeddedResource Remove="wwwroot\font-awesome\**" />
+		<None Remove="Configuration\**" />
 		<None Remove="Styles\**\*.css" />
 		<None Remove="Styles\**\*.map" />
 		<None Remove="wwwroot\font-awesome\**" />

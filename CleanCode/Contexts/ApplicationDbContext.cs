@@ -11,8 +11,8 @@ namespace Clean_Code.Contexts
 
         public DbSet<Data> Data { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //}
     }
 }

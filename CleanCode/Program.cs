@@ -3,11 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Clean_Code.Contexts;
 using Clean_Code.Hubs;
-using Clean_Code.Services;
 using CleanCode.Services;
-using CleanCode.Const;
 using Hangfire;
 using CleanCode.Services.Interface;
+using CleanCode.Services.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,10 +33,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Data", Version = "v1" });
 });
 
-builder.Services.AddHostedService(provider =>
-{
-    return new ImageCleanupService(Constants.PATH_CLEANUP_IMAGE);
-});
+builder.Services.AddHostedService<AutoDeleteOldFileInFolder>();
 
 var log4netConfig = new FileInfo("log4net.config");
 XmlConfigurator.Configure(log4netConfig);

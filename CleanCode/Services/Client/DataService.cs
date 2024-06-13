@@ -1,6 +1,6 @@
 ﻿using Clean_Code.Contexts;
 
-namespace Clean_Code.Services
+namespace CleanCode.Services.Client
 {
     public class DataService
     {

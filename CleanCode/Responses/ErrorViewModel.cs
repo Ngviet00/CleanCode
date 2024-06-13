@@ -1,4 +1,4 @@
-namespace Clean_Code.Models
+namespace Clean_Code.Responses
 {
     public class ErrorViewModel
     {

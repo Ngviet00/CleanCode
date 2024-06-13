@@ -7,21 +7,20 @@ namespace Clean_Code.Models.Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("id", TypeName = "bigint")]
-        public long Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Column("created_at")]
-        public DateTime? CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; } = DateTime.UtcNow.AddHours(7);
 
         [Column("updated_at")]
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow.AddHours(7);
 
         [Column("created_by")]
         [MaxLength(255)]
-        public string? CreatedBy { get; set; }
+        public string? CreatedBy { get; set; } = string.Empty;
 
         [Column("updated_by")]
         [MaxLength(255)]
-        public string? UpdatedBy { get; set; }
+        public string? UpdatedBy { get; set; } = string.Empty;
     }
 }

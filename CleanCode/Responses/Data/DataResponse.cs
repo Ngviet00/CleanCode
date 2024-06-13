@@ -1,4 +1,4 @@
-﻿namespace CleanCode.Models.Response.Data
+﻿namespace CleanCode.Responses.Data
 {
     public class DataResponse
     {
