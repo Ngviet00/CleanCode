@@ -4,11 +4,9 @@
     {
         public static ControlPLC controlPLC = new ControlPLC();
 
-        //15 day
-        public static int AUTO_DELETE_IMAGE = 20;
+        public static int AUTO_DELETE_IMAGE = 20; //day
 
-        //120 day
-        public static int AUTO_DELETE_EXCEL = 40;
+        public static int AUTO_DELETE_EXCEL = 40; //day
 
         public static string PATH_SAVE_EXCEL = @"D:\MS_ResultStiffener\StiffenerInspection\Excel";
 
