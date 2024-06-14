@@ -1,4 +1,4 @@
-﻿using CleanCode.Services.Interface;
+﻿using CleanCode.Application.Job.Hangfire.Interface;
 using Hangfire;
 using Microsoft.AspNetCore.Mvc;
 

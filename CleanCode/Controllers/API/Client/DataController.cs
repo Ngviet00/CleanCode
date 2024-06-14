@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CleanCode.CommonClass;
-using CleanCode.Services.Client;
+using CleanCode.Application.Services.Client;
+using CleanCode.Common;
 
 namespace CleanCode.Controllers.API.User
 {

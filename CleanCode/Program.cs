@@ -1,12 +1,14 @@
 using log4net.Config;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Clean_Code.Contexts;
 using Clean_Code.Hubs;
-using CleanCode.Services;
 using Hangfire;
-using CleanCode.Services.Interface;
-using CleanCode.Services.Client;
+using CleanCode.Application.Services.Client;
+using CleanCode.Infrastructure.Context;
+using CleanCode.Application.Job.Hangfire.Interface;
+using CleanCode.Application.Job.Hangfire;
+using CleanCode.Application.Job;
+using CleanCode.Application.Jobs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +36,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 builder.Services.AddHostedService<AutoDeleteOldFileInFolder>();
+builder.Services.AddHostedService<DeleteFileLog>();
 
 var log4netConfig = new FileInfo("log4net.config");
 XmlConfigurator.Configure(log4netConfig);
