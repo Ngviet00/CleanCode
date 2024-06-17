@@ -38,5 +38,16 @@ namespace CleanCode.Controllers.API.User
                 message = "Success!"
             });
         }
+
+        [HttpGet("/test-get-data")]
+        public async Task<ActionResult> GetDataTest()
+        {
+            return Ok(new
+            {
+                status = 200,
+                data = await _dataService.GetData(),
+                message = "Success!"
+            });
+        }
     }
 }
