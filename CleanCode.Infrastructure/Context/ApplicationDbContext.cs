@@ -5,7 +5,10 @@ namespace CleanCode.Infrastructure.Context
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+            this.ChangeTracker.LazyLoadingEnabled = false;
+        }
 
         public DbSet<Data> Data { get; set; }
 

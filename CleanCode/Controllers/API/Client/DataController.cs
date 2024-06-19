@@ -2,7 +2,7 @@
 using CleanCode.Application.Services.Client;
 using CleanCode.Common;
 
-namespace CleanCode.Controllers.API.User
+namespace CleanCode.Controllers.API.Client
 {
     [Route("api/data/")]
     [ApiController]

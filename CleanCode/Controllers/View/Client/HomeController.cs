@@ -1,3 +1,4 @@
+using CleanCode.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clean_Code.Controllers
@@ -9,6 +10,7 @@ namespace Clean_Code.Controllers
 
         public IActionResult Index()
         {
+            Log.Info("test log");
             return View();
         }
     }
